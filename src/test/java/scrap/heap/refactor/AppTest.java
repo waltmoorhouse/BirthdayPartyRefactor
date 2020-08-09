@@ -4,11 +4,36 @@
 package scrap.heap.refactor;
 
 import org.junit.Test;
+import scrap.heap.refactor.model.Balloon;
+import scrap.heap.refactor.model.Cake;
+
 import static org.junit.Assert.*;
 
 public class AppTest {
     @Test public void testAppHasAGreeting() {
         App classUnderTest = new App();
         assertNotNull("app should have a greeting", classUnderTest.getGreeting());
+    }
+
+    @Test public void testBalloonProperties() {
+        Balloon blueMylar = new Balloon(Balloon.Color.BLUE, Balloon.Material.MYLAR);
+        Balloon redMylar = new Balloon(Balloon.Color.RED, Balloon.Material.MYLAR);
+        Balloon yellowLatex = new Balloon(Balloon.Color.YELLOW, Balloon.Material.LATEX);
+        assertEquals("blueMylar should be blue", blueMylar.getColor(), Balloon.Color.BLUE);
+        assertEquals("blueMylar should be mylar", blueMylar.getMaterial(), Balloon.Material.MYLAR);
+        assertEquals("redMylar should be red", redMylar.getColor(), Balloon.Color.RED);
+        assertEquals("redMylar should be mylar", redMylar.getMaterial(), Balloon.Material.MYLAR);
+        assertEquals("yellowLatex should be yellow", yellowLatex.getColor(), Balloon.Color.YELLOW);
+        assertEquals("yellowLatex should be latex", yellowLatex.getMaterial(), Balloon.Material.LATEX);
+    }
+
+    @Test public void testCakeProperties() {
+        Cake cakeUnderTest = new Cake(Cake.Flavor.CHOCOLATE, Cake.Flavor.VANILLA,
+                Cake.Shape.CIRCLE, Cake.Size.LARGE, Cake.Color.BROWN);
+        assertEquals("cake flavor should be Chocolate", cakeUnderTest.getCakeFlavor(), Cake.Flavor.CHOCOLATE);
+        assertEquals("frosting flavor should be vanilla", cakeUnderTest.getFrostingFlavor(), Cake.Flavor.VANILLA);
+        assertEquals("cake shape should be circle", cakeUnderTest.getShape(), Cake.Shape.CIRCLE);
+        assertEquals("cake size should be large", cakeUnderTest.getSize(), Cake.Size.LARGE);
+        assertEquals("cake color should be browm", cakeUnderTest.getCakeColor(), Cake.Color.BROWN);
     }
 }
