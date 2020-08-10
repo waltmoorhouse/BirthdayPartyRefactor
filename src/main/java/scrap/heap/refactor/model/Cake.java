@@ -3,18 +3,14 @@ package scrap.heap.refactor.model;
 /**
  * Class represents a type of cake. Flavors, Colors, Sizes, and Shapes available are exposed via enums.
  */
-public class Cake {
-	private Flavor cakeFlavor;
-	private Flavor frostingFlavor;
-	private Shape shape;
-	private Size size;
-	private Color cakeColor;
+public class Cake implements Orderable {
+	private final Flavor cakeFlavor;
+	private final Flavor frostingFlavor;
+	private final Shape shape;
+	private final Size size;
+	private final Color cakeColor;
 
-	private Cake()  {
-		// No constructing balloons without properties.
-	}
-
-	public Cake(Flavor cakeFlavor, Flavor frostingFlavor, Shape shape, Size size, Color cakeColor)  {
+	public Cake(Flavor cakeFlavor, Flavor frostingFlavor, Shape shape, Size size, Color cakeColor) {
 		this.cakeFlavor = cakeFlavor;
 		this.frostingFlavor = frostingFlavor;
 		this.shape = shape;
@@ -81,8 +77,24 @@ public class Cake {
 		YELLOW("yellow");
 
 		public final String label;
+
 		Color(String label) {
 			this.label = label;
 		}
+	}
+
+	@Override
+	public void addToOrder(int qty) {
+		for (int x = 0; x < qty; x++) {
+			orderCake(this);
+		}
+	}
+
+	private static void orderCake(Cake cake) {
+
+		//for the purposes of this exercise, pretend that this method adds a cake to the order
+		System.out.println("cake ordered; " + cake.getCakeFlavor().label + ", " + cake.getFrostingFlavor().label +
+				", " + cake.getShape().label + ", " + cake.getSize().label + ", " + cake.getCakeColor().label);
+
 	}
 }

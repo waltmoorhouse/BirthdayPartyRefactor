@@ -3,15 +3,11 @@ package scrap.heap.refactor.model;
 /**
  * Class represents a type of balloon. Colors and Materials available are exposed via enums.
  */
-public class Balloon {
-	private Color color;
-	private Material material;
+public class Balloon implements Orderable {
+	private final Color color;
+	private final Material material;
 
-	private Balloon()  {
-		// No constructing balloons without properties.
-	}
-
-	public Balloon(Color color, Material material)  {
+	public Balloon(Color color, Material material) {
 		this.color = color;
 		this.material = material;
 	}
@@ -46,5 +42,15 @@ public class Balloon {
 
 	public Material getMaterial() {
 		return material;
+	}
+
+	@Override
+	public void addToOrder(int qty) {
+		orderBalloons(this, qty);
+	}
+
+	private static void orderBalloons(Balloon balloon, int number) {
+		//for the purposes of this exercise, pretend this method works and adds balloons to the order
+		System.out.println("Balloons ordered; " + balloon.getColor().label + ", " + balloon.getMaterial().label + ", " + number);
 	}
 }

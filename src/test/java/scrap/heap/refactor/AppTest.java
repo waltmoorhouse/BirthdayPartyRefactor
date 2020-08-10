@@ -6,8 +6,12 @@ package scrap.heap.refactor;
 import org.junit.Test;
 import scrap.heap.refactor.model.Balloon;
 import scrap.heap.refactor.model.Cake;
+import scrap.heap.refactor.model.OrderItem;
 
-import static org.junit.Assert.*;
+import java.security.InvalidParameterException;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class AppTest {
     @Test public void testAppHasAGreeting() {
@@ -27,7 +31,8 @@ public class AppTest {
         assertEquals("yellowLatex should be latex", yellowLatex.getMaterial(), Balloon.Material.LATEX);
     }
 
-    @Test public void testCakeProperties() {
+    @Test
+    public void testCakeProperties() {
         Cake cakeUnderTest = new Cake(Cake.Flavor.CHOCOLATE, Cake.Flavor.VANILLA,
                 Cake.Shape.CIRCLE, Cake.Size.LARGE, Cake.Color.BROWN);
         assertEquals("cake flavor should be Chocolate", cakeUnderTest.getCakeFlavor(), Cake.Flavor.CHOCOLATE);
@@ -35,5 +40,11 @@ public class AppTest {
         assertEquals("cake shape should be circle", cakeUnderTest.getShape(), Cake.Shape.CIRCLE);
         assertEquals("cake size should be large", cakeUnderTest.getSize(), Cake.Size.LARGE);
         assertEquals("cake color should be browm", cakeUnderTest.getCakeColor(), Cake.Color.BROWN);
+    }
+
+    @Test(expected = InvalidParameterException.class)
+    public void testCannotHaveNegativeQuantity() {
+        Balloon balloon = new Balloon(Balloon.Color.BLUE, Balloon.Material.MYLAR);
+        new OrderItem(balloon, -3);
     }
 }
